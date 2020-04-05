@@ -15,7 +15,7 @@ import getopt
 import csv
 
 if len(sys.argv) < 3:
-    print('Usage: %s [-d <DELIMITER>] [-s <SEPARATOR>] [-p <PADDING>] [-f <FIELD_0>,<FIELD_1>,...] <INPUT_CSV> <OUTPUT_CSV>' % sys.argv[0])
+    print('Usage: %s [-d <DELIMITER>] [-s <SEPARATOR>] [-p <PADDING>] [-f <FIELD_0>,<FIELD_1>,...] <INPUT_CSV> <OUTPUT_TXT>' % sys.argv[0])
     quit(1)
 
 padding = 1
@@ -35,7 +35,7 @@ for (k,v) in opt:
         separator = v
 
 # read data
-(input_csv, output_csv) = args
+(input_csv, output_txt) = args
 with open(input_csv) as fd:
     reader = csv.reader(fd)
     data = [ l for l in reader ]
@@ -75,8 +75,8 @@ for line in data:
     s += '\n'
 
 # save output
-if output_csv != '-':
-    with open(output_csv, 'w+t') as fd:
+if output_txt != '-':
+    with open(output_txt, 'w+t') as fd:
         fd.write(s)
 else:
     print(s)
